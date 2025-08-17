@@ -17,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/AhujaAbhishek18/post-app/issues"
   },
-  "homepage": "https://github.com/AhujaAbhishek18/post-app#readme"
+  "homepage": "https://github.com/AhujaAbhishek18/post-app#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.17.1"
+  }
 }
