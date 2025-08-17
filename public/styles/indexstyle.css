@@ -1,0 +1,17 @@
+body{
+  background: black;
+  color: aliceblue;
+}
+.inputs{
+  background: transparent;
+  outline: none;
+  border-radius: 3px;
+  width:10rem;
+  color: aliceblue;
+  height:1.5rem
+}
+.button{
+  background-color: rgb(41, 226, 243);
+  height: 1.8rem;
+  width: 4rem;
+}
