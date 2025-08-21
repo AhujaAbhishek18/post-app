@@ -4,6 +4,7 @@ const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken');
 const path=require('path')
 const usermodel=require('./models/user')
+const postmodel=require('./models/post')
 const cookieparser=require('cookie-parser');
 
 app.set('view engine',"ejs")
@@ -33,6 +34,9 @@ app.post("/register", async (req,res)=>{
         name,
         password:hash
       })
+      let token=jwt.sign({email:email,userid:usercreated._id},"shhhh")
+      res.cookie("token",token)
+      res.send("registered")
     })
   })
 
