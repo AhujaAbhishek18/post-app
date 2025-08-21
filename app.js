@@ -16,12 +16,21 @@ app.use(cookieparser());
 app.get("/",(req,res)=>{
   res.render("index")
 })
+app.get("/login",(req,res)=>{
+  res.render("login")
+})
+app.get("/profile",isloggedin, async(req,res)=>{
+  let user= await usermodel.findOne({email:req.user.email})
+  console.log(user)
+  res.render("profile",{user})
+
+})
 app.post("/register", async (req,res)=>{
   let {email,username,password,name,age}=req.body;
   let user=await usermodel.findOne({email:email});
  
   if(user){
-    console.log("2")
+   
     return res.status(500).send("user already registered") 
   }
    
@@ -42,4 +51,42 @@ app.post("/register", async (req,res)=>{
 
 
 })
+app.post("/login", async (req,res)=>{
+  let {username,password}=req.body;
+  let user=await usermodel.findOne({username:username});
+ 
+  if(!user){
+    
+    return res.status(500).send("username or password incorrect") 
+  }
+
+  bcrypt.compare(password,user.password,(err,result)=>{
+    if(result){
+      
+      let token=jwt.sign({email:user.email,userid:user._id},"shhhh")
+      res.cookie("token",token)
+      res.render("profile")
+    }
+    else{
+      res.redirect("/login");
+    }
+  })
+   
+
+
+})
+app.get("/logout",(req,res)=>{
+  res.cookie("token","");
+  res.redirect("/login")
+})
+function isloggedin(req,res,next){
+  if(req.cookies.token===""){
+    res.redirect("/login")
+  }
+  else{
+    let data=jwt.verify(req.cookies.token,"shhhh");
+    req.user=data
+    next();
+  }
+}
 app.listen(3000);
