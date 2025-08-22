@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/profilestyle.css">
+</head>
+<body>
+  <div class="main">
+    <div class="logout">
+      <a href="/logout">Logout</a>
+    </div>
+    <h3><span>Hello,</span><%= post.user.name%>👋</h3>
+    <h5>you can edit your post.</h5>
+    <form action="/post" method="post">
+      <textarea name="postcontent" placeholder=<%= post.content%> class="posttext"></textarea></BR>
+      <input type="submit" value="Create new post" class="button">
+    </form>
+    
+  </div>  
+</body>
+</html>

@@ -6,6 +6,7 @@ const path=require('path')
 const usermodel=require('./models/user')
 const postmodel=require('./models/post')
 const cookieparser=require('cookie-parser');
+const post = require("./models/post");
 
 app.set('view engine',"ejs")
 app.use(express.json())
@@ -20,8 +21,8 @@ app.get("/login",(req,res)=>{
   res.render("login")
 })
 app.get("/profile",isloggedin, async(req,res)=>{
-  let user= await usermodel.findOne({email:req.user.email})
-  console.log(user)
+  let user= await usermodel.findOne({email:req.user.email}).populate("post")
+  
   res.render("profile",{user})
 
 })
@@ -89,4 +90,33 @@ function isloggedin(req,res,next){
     next();
   }
 }
+app.post("/post",isloggedin,async(req,res)=>{
+  let user=await usermodel.findOne({email:req.user.email});
+  let post=await postmodel.create({
+    user:user._id,
+    content:req.body.postcontent
+  })
+  user.post.push(post._id)
+  await user.save();
+  res.redirect("/profile")
+})
+app.get("/like/:id",isloggedin,async(req,res)=>{
+  let post=await postmodel.findOne({_id:req.params.id}).populate('user')
+  if(post.likes.indexOf(req.user.userid) === -1){
+    post.likes.push(req.user.userid);
+  }
+  else{
+    post.likes.splice(post.likes.indexOf(req.user.userid),1);
+  }
+
+
+  await post.save()
+  res.redirect("/profile")
+})
+app.get("/edit/:id",isloggedin,async(req,res)=>{
+  let post=await postmodel.findOne({_id:req.params.id}).populate('user')
+  
+  
+  res.render("edit",{post})
+})
 app.listen(3000);

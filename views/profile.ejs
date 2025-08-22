@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles/profilestyle.css">
+</head>
+<body>
+  <div class="main">
+    <div class="logout">
+      <a href="/logout">Logout</a>
+    </div>
+    <h3><span>Hello,</span><%= user.name%>👋</h3>
+    <h5>you can create a new post.</h5>
+    <form action="/post" method="post">
+      <textarea name="postcontent" placeholder="Whats on your mind" class="posttext"></textarea></BR>
+      <input type="submit" value="Create new post" class="button">
+    </form>
+    <div class="postbigcontainer">
+      <h3>Your Posts</h3>
+      <div class="postcontainer">
+        <% user.post.reverse().forEach((post)=>{%>
+          <div class="post">
+          <h4>@<%=user.name%></h4>
+          <p><%= post.content %></p>
+          <small class="countlike"><%= post.likes.length %> likes</small>
+          <div class="btns">
+            <a class="like" href="/like/<%= post._id%>">
+              <%= post.likes.indexOf(user._id)===-1? "Like":"Unlike" %>
+            </a>
+            <a class="edit" href="/edit/<%= post._id%>">edit</a>
+          </div>
+        </div>
+
+        <%})%>
+      
+
+        
+      </div>
+    </div>
+  </div>  
+</body>
+</html>
+  
+<!-- <div class="post">
+          <h4>@username</h4>
+          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi, nulla suscipit totam ullam voluptatibus voluptas magnam tempora incidunt nemo tempore dignissimos neque, deleniti sequi vel ipsum laboriosam ipsa quibusdam? Architecto.</p>
+          <div class="btns">
+            <a class="like" href="">Like</a>
+            <a class="edit" href="">edit</a>
+          </div>
+        </div> -->

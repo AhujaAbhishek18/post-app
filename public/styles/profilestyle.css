@@ -1,0 +1,107 @@
+
+body{
+  background: #000;
+  color: aliceblue;
+}
+.main{
+display: flex;
+flex-direction: column;
+margin-left: 0.5rem;
+
+}
+.logout{  
+  display: flex; 
+  justify-content:  flex-end; 
+}
+.logout a {
+     
+      padding: 6px 8px;
+      background-color: #eb1a2b;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      transition: background-color 0.3s;
+}
+
+.logout a:hover {
+  background-color: #96080a;
+}
+.main h3{
+ padding-bottom: 0;
+ font-size: 30px;
+ margin-bottom: 2px;
+}
+.main h5{
+  margin-top: 2px;
+  padding: 0;
+  font-size: 13px;
+}
+.posttext{
+  background:rgb(26, 25, 25) ;
+  width:30rem;
+  border-radius: 3px;
+  min-height: 4rem;
+  margin-bottom: 4px;
+}
+textarea{
+  color: aliceblue;
+}
+.button{
+  padding: 6px 8px;
+  min-height: 2.3rem;
+      background-color: #0000FF;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      transition: background-color 0.3s;
+}
+.postbigcontainer{
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.postcontainer{
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap:0.5rem;
+}
+.countlike{
+  margin-top: auto;
+  margin-bottom: 0px;
+}
+.post{
+  background: rgb(96, 95, 95);
+  width:47%;
+  
+  padding:13px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+ 
+}
+.post h4{
+  margin-top: 0px;
+  margin-bottom: 0;
+  color: #0f84e4;
+  
+}
+.btns{
+  display:flex;
+  gap:1rem;
+
+}
+.like{
+  text-decoration: none;
+  color: #0f84e4;
+}
+.edit{
+  color: rgb(172, 166, 166);
+  text-decoration: none;
+}
+
+
