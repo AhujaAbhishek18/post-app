@@ -116,7 +116,14 @@ app.get("/like/:id",isloggedin,async(req,res)=>{
 app.get("/edit/:id",isloggedin,async(req,res)=>{
   let post=await postmodel.findOne({_id:req.params.id}).populate('user')
   
-  
+  console.log(post.content  )
   res.render("edit",{post})
+})
+app.post("/editpost/:id",isloggedin,async(req,res)=>{
+  let post=await postmodel.findOne({_id:req.params.id})
+  post.content=req.body.postcontent;
+  await post.save();
+  res.redirect("/profile")
+
 })
 app.listen(3000);
